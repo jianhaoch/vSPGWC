@@ -37,25 +37,25 @@ class SyncVSPGWCTenant(SyncInstanceUsingAnsible):
 
     # Gets the attributes that are used by the Ansible template but are not
     # part of the set of default attribtues.
-    def get_extra_attributes(self, o):
-        fields = {}
-        shared_net_id = Network.objects.get(name='shared_network').id
+    #def get_extra_attributes(self, o):
+    #    fields = {}
+    #    shared_net_id = Network.objects.get(name='shared_network').id
 
-	try:
-            fields['sgwc_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=o.instance_id).ip
-        except Exception:
-            print '{} does not have an instance'.format(o.name)
+	#try:
+    #        fields['sgwc_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=o.instance_id).ip
+    #    except Exception:
+    #        print '{} does not have an instance'.format(o.name)
 
-        try:
-            mme = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vmme').id, subscriber_tenant_id=o.subscriber_tenant_id)
-            fields['mme_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=mme.instance_id).ip
-	except Exception:
-            print '{} does not have a VMME instance'.format(o.subscriber_tenant.name)
+    #    try:
+    #        mme = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vmme').id, subscriber_tenant_id=o.subscriber_tenant_id)
+    #        fields['mme_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=mme.instance_id).ip
+	#except Exception:
+    #        print '{} does not have a VMME instance'.format(o.subscriber_tenant.name)
 
-        try:
-            sgwu = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vspgwu').id, subscriber_tenant_id=o.subscriber_tenant_id)
-            fields['sgwu_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=sgwu.instance_id).ip
-        except Exception:
-            print '{} does not have a VSPGWU instance'.format(o.subscriber_tenant.name)
+    #    try:
+    #        sgwu = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vspgwu').id, subscriber_tenant_id=o.subscriber_tenant_id)
+    #        fields['sgwu_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=sgwu.instance_id).ip
+    #    except Exception:
+    #        print '{} does not have a VSPGWU instance'.format(o.subscriber_tenant.name)
 
-        return fields
+    #    return fields

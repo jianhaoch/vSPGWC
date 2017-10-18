@@ -19,9 +19,5 @@
   user: ubuntu
   sudo: yes
   vars:
-    - sgwc_shared_ip: {{ sgwc_shared_ip }}
-    - mme_shared_ip: {{ mme_shared_ip }}
-    - sgwu_shared_ip: {{ sgwu_shared_ip }}
   roles:
-    - ngic_config
 
