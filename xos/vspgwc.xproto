@@ -15,7 +15,7 @@ message VSPGWCVendor (XOSBase){
 }
 
 message VSPGWCTenant (TenantWithContainer){
-    option name = "vspgwcserviceinstance";
     option verbose_name = "Virtual Serving PDN Gateway -- Control Plane ServiceInstance";
+
     optional manytoone vspgwc_vendor->VSPGWCVendor:vendor_tenants = 1 [help_text = "select vendor of choice, leave blank for slice default", db_index = True, null = True, blank = True];
 }
