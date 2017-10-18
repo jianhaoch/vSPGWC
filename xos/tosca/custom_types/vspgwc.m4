@@ -14,33 +14,33 @@
 
 tosca_definitions_version: tosca_simple_yaml_1_0
 
-# compile this with "m4 vsgwc.m4 > vsgwc.yaml"
+# compile this with "m4 vspgwc.m4 > vspgwc.yaml"
 
 # include macros
 include(macros.m4)
 
 node_types:
-    tosca.nodes.VSGWCService:
+    tosca.nodes.VSPGWCService:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Service
+            VSPGWC Service
         capabilities:
             xos_base_service_caps
         properties:
             xos_base_props
             xos_base_service_props
 
-    tosca.nodes.VSGWCTenant:
+    tosca.nodes.VSPGWCTenant:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Tenant
+            VSPGWC Tenant
         properties:
             xos_base_tenant_props
 
-    tosca.nodes.VSGWCVendor:
+    tosca.nodes.VSPGWCVendor:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Vendor
+            VSPGWC Vendor
         properties:
             xos_base_props
             name:
@@ -49,5 +49,5 @@ node_types:
 
     tosca.relationships.VendorOfTenant:
            derived_from: tosca.relationships.Root
-           valid_target_types: [ tosca.capabilities.xos.VSGWCTenant ]
+           valid_target_types: [ tosca.capabilities.xos.VSPGWCTenant ]
 

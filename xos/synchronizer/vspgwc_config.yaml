@@ -12,12 +12,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-
-from service import XOSService
-from services.vsgwc.models import VSGWCService
-
-class XOSVSGWCService(XOSService):
-    provides = "tosca.nodes.VSGWCService"
-    xos_model = VSGWCService
-    copyin_props = ["view_url", "icon_url", "enabled", "published", "public_key", "private_key_fn", "versionNumber"]
-
+name: vspgwc-synchronizer
+accessor:
+  username: xosadmin@opencord.org
+  password: "@/opt/xos/services/vspgwc/credentials/xosadmin@opencord.org"
+dependency_graph: "/opt/xos/synchronizers/vspgwc/model-deps"
+steps_dir: "/opt/xos/synchronizers/vspgwc/steps"
+sys_dir: "/opt/xos/synchronizers/vspgwc/sys"

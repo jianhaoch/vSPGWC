@@ -14,7 +14,7 @@
 
 tosca_definitions_version: tosca_simple_yaml_1_0
 
-# compile this with "m4 vsgwc.m4 > vsgwc.yaml"
+# compile this with "m4 vspgwc.m4 > vspgwc.yaml"
 
 # include macros
 # Note: Tosca derived_from isn't working the way I think it should, it's not
@@ -35,10 +35,10 @@ tosca_definitions_version: tosca_simple_yaml_1_0
 
 
 node_types:
-    tosca.nodes.VSGWCService:
+    tosca.nodes.VSPGWCService:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Service
+            VSPGWC Service
         capabilities:
             scalable:
                 type: tosca.capabilities.Scalable
@@ -93,10 +93,10 @@ node_types:
                 required: false
                 description: Version number of Service.
 
-    tosca.nodes.VSGWCTenant:
+    tosca.nodes.VSPGWCTenant:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Tenant
+            VSPGWC Tenant
         properties:
             kind:
                 type: string
@@ -107,10 +107,10 @@ node_types:
                 required: false
                 description: Service specific ID opaque to XOS but meaningful to service
 
-    tosca.nodes.VSGWCVendor:
+    tosca.nodes.VSPGWCVendor:
         derived_from: tosca.nodes.Root
         description: >
-            VSGWC Vendor
+            VSPGWC Vendor
         properties:
             no-delete:
                 type: boolean
@@ -134,5 +134,5 @@ node_types:
 
     tosca.relationships.VendorOfTenant:
            derived_from: tosca.relationships.Root
-           valid_target_types: [ tosca.capabilities.xos.VSGWCTenant ]
+           valid_target_types: [ tosca.capabilities.xos.VSPGWCTenant ]
 

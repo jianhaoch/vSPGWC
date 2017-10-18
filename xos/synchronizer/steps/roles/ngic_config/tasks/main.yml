@@ -19,7 +19,7 @@
     state: directory
     mode: 0755
 
-- name: save control plane configuration information in vSGWC VM
+- name: save control plane configuration information in vSPGWC VM
   template:
     src=cp_config.cfg.j2
     dest=/var/tmp/config/cp_config.cfg

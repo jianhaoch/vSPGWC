@@ -14,16 +14,16 @@
 
 from xosresource import XOSResource
 from core.models import ServiceInstance
-from services.vsgwc.models import VSGWCVendor
+from services.vspgwc.models import VSPGWCVendor
 
-class XOSVSGWCVendor(XOSResource):
-    provides = "tosca.nodes.VSGWCVendor"
-    xos_model = VSGWCVendor
+class XOSVSPGWCVendor(XOSResource):
+    provides = "tosca.nodes.VSPGWCVendor"
+    xos_model = VSPGWCVendor
     name_field = None
     copyin_props = ( "name",)
 
     def get_xos_args(self, throw_exception=True):
-        args = super(XOSVSGWCVendor, self).get_xos_args()
+        args = super(XOSVSPGWCVendor, self).get_xos_args()
 
         tenant_name = self.get_requirement("tosca.relationships.VendorOfTenant", throw_exception=throw_exception)
         if tenant_name:
@@ -42,5 +42,5 @@ class XOSVSGWCVendor(XOSResource):
         pass
 
     def can_delete(self, obj):
-        return super(XOSVSGWCVendor, self).can_delete(obj)
+        return super(XOSVSPGWCVendor, self).can_delete(obj)
 

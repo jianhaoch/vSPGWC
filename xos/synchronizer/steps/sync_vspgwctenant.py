@@ -21,27 +21,27 @@ from synchronizers.new_base.SyncInstanceUsingAnsible import SyncInstanceUsingAns
 parentdir = os.path.join(os.path.dirname(__file__), "..")
 sys.path.insert(0, parentdir)
 
-class SyncVSGWCTenant(SyncInstanceUsingAnsible):
-    provides = [VSGWCTenant]
+class SyncVSPGWCTenant(SyncInstanceUsingAnsible):
+    provides = [VSPGWCTenant]
 
-    observes = VSGWCTenant
+    observes = VSPGWCTenant
 
     requested_interval = 0
 
-    template_name = "vsgwctenant_playbook.yaml"
+    template_name = "vspgwctenant_playbook.yaml"
 
     service_key_name = "/opt/xos/configurations/mcord/mcord_private_key"
 
     def __init__(self, *args, **kwargs):
-        super(SyncVSGWCTenant, self).__init__(*args, **kwargs)
+        super(SyncVSPGWCTenant, self).__init__(*args, **kwargs)
 
 #    def fetch_pending(self, deleted):
 #        if (not deleted):
-#            objs = VSGWCTenant.get_tenant_objects().filter(
+#            objs = VSPGWCTenant.get_tenant_objects().filter(
 #                Q(enacted__lt=F('updated')) | Q(enacted=None), Q(lazy_blocked=False))
 #        else:
 #            # If this is a deletion we get all of the deleted tenants..
-#            objs = VSGWCTenant.get_deleted_tenant_objects()
+#            objs = VSPGWCTenant.get_deleted_tenant_objects()
 #
 #        return objs
 
@@ -63,9 +63,9 @@ class SyncVSGWCTenant(SyncInstanceUsingAnsible):
             print '{} does not have a VMME instance'.format(o.subscriber_tenant.name)
 
         try:
-            sgwu = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vsgwu').id, subscriber_tenant_id=o.subscriber_tenant_id)
+            sgwu = TenantWithContainer.objects.get(provider_service_id=Service.objects.get(name='vspgwu').id, subscriber_tenant_id=o.subscriber_tenant_id)
             fields['sgwu_shared_ip'] = Port.objects.get(network_id=shared_net_id, instance_id=sgwu.instance_id).ip
         except Exception:
-            print '{} does not have a VSGWU instance'.format(o.subscriber_tenant.name)
+            print '{} does not have a VSPGWU instance'.format(o.subscriber_tenant.name)
 
         return fields

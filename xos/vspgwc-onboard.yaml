@@ -14,24 +14,24 @@
 
 tosca_definitions_version: tosca_simple_yaml_1_0
 
-description: Onboard the vsgwc
+description: Onboard the vspgwc
 
 imports:
    - custom_types/xos.yaml
 
 topology_template:
   node_templates:
-    servicecontroller#vsgwc:
+    servicecontroller#vspgwc:
       type: tosca.nodes.ServiceController
       properties:
-          base_url: file:///opt/xos_services/vsgw/xos/
+          base_url: file:///opt/xos_services/vspgw/xos/
           # The following will concatenate with base_url automatically, if
           # base_url is non-null.
           xproto: ./
           synchronizer: synchronizer/manifest
-          synchronizer_run: vsgwc-synchronizer.py
-          tosca_custom_types: tosca/custom_types/vsgwc.yaml
-          tosca_resource: tosca/resources/vsgwctenant.py, tosca/resources/vsgwcservice.py, tosca/resources/vsgwcvendor.py
+          synchronizer_run: vspgwc-synchronizer.py
+          tosca_custom_types: tosca/custom_types/vspgwc.yaml
+          tosca_resource: tosca/resources/vspgwctenant.py, tosca/resources/vspgwcservice.py, tosca/resources/vspgwcvendor.py
           private_key: file:///opt/xos/key_import/mcord_rsa
           public_key: file:///opt/xos/key_import/mcord_rsa.pub
 
