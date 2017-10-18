@@ -24,7 +24,7 @@ topology_template:
     servicecontroller#vspgwc:
       type: tosca.nodes.ServiceController
       properties:
-          base_url: file:///opt/xos_services/vspgw/xos/
+          base_url: file:///opt/xos_services/vspgwc/xos/
           # The following will concatenate with base_url automatically, if
           # base_url is non-null.
           xproto: ./
