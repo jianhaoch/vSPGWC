@@ -35,16 +35,6 @@ class SyncVSPGWCTenant(SyncInstanceUsingAnsible):
     def __init__(self, *args, **kwargs):
         super(SyncVSPGWCTenant, self).__init__(*args, **kwargs)
 
-#    def fetch_pending(self, deleted):
-#        if (not deleted):
-#            objs = VSPGWCTenant.get_tenant_objects().filter(
-#                Q(enacted__lt=F('updated')) | Q(enacted=None), Q(lazy_blocked=False))
-#        else:
-#            # If this is a deletion we get all of the deleted tenants..
-#            objs = VSPGWCTenant.get_deleted_tenant_objects()
-#
-#        return objs
-
     # Gets the attributes that are used by the Ansible template but are not
     # part of the set of default attribtues.
     def get_extra_attributes(self, o):
